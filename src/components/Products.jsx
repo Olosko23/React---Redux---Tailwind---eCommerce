@@ -28,7 +28,7 @@ const Product = () => {
 
   const Loading = () => {
     return(
-      <div className="flex flex-row gap-10">
+      <div className="flex justify-center flex-row gap-10 ">
         <Skeleton />
         <Skeleton />
         <Skeleton />

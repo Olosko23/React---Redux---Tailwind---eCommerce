@@ -1,11 +1,20 @@
 import React, {useState, useEffect} from 'react'
+import { useDispatch } from 'react-redux';
+import {addCart} from  '../redux/action'
 import { BsStar } from 'react-icons/bs';
 import { useParams } from 'react-router-dom'
+import Skeleton from './Skeleton';
 
 const Product = () => {
     const {id} = useParams();
     const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(false);
+    
+
+    const dispatch = useDispatch();
+    const addProduct = (product) =>{
+        dispatch(addCart(product));
+    }
 
     useEffect(() => {
         const getProduct = async () => {
@@ -16,10 +25,11 @@ const Product = () => {
         }
         getProduct();
     })
+
     const Loading = () => {
         return(
             <div>
-                Loading....
+                <Skeleton />
             </div>
         )
     }
@@ -37,7 +47,7 @@ const Product = () => {
                     <h3>$ {product.price}</h3>
                     <p>{product.description}</p>
                     <div className="flex flex-row gap-5 px-3 py-5">
-                    <button className="rounded-xl shadow-lg py-4 px-6 bg-slate-600">Add to Cart</button>
+                    <button className="rounded-xl shadow-lg py-4 px-6 bg-slate-600" onClick={() => addProduct(product)}>Add to Cart</button>
                     <button className="rounded-xl shadow-lg py-4 px-6 bg-slate-200">Go to Cart</button>
                     </div>
                 </div>

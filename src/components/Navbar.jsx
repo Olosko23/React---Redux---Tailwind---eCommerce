@@ -1,8 +1,10 @@
 import React from 'react'
 import {BsCart} from 'react-icons/bs'
 import {Link, Outlet} from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Navbar() {
+    const state = useSelector((state) => state.handleCart);
     const links = [
         {
             id:1,
@@ -45,7 +47,7 @@ function Navbar() {
             <div className="flex flex-row gap-5 justify-evenly py-4 px-6 font-semibold">
                 <button className="">Login</button>
                 <button className="">Register</button>
-                <button className="flex flex-row justify-between gap-2 mt-1"> <span><BsCart className="pt-1" size={20}/></span>Cart (0) </button>
+                <button className="flex flex-row justify-between gap-2 mt-1"> <span><BsCart className="pt-1" size={20}/></span>Cart ({state.length}) </button>
             </div>
         </nav>
     </div>
